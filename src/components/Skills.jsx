@@ -1,5 +1,12 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
+const groupIcons = {
+  'FRONT-END': '</>',
+  'BACK-END': '{ }',
+  'LANGUAGES': 'λ',
+  'TOOLS': '⚡',
+}
+
 function Skills() {
   const [ref, isVisible] = useScrollReveal({ threshold: 0.1 })
 
@@ -10,11 +17,12 @@ function Skills() {
     },
     {
       label: 'BACK-END',
-      skills: ['Python', 'Flask'],
+      skills: ['Node.js', 'Express.js', 'MongoDB', 'SQL', 'Flask'],
+      wide: true,
     },
     {
       label: 'LANGUAGES',
-      skills: ['C', 'C++'],
+      skills: ['Python', 'C', 'C++'],
     },
     {
       label: 'TOOLS',
@@ -24,6 +32,8 @@ function Skills() {
 
   return (
     <section id="skills" className="skills" ref={ref}>
+      <div className="skills__glow" aria-hidden="true" />
+
       <div className={`skills__inner ${isVisible ? 'reveal' : ''}`}>
         <div className="skills__header">
           <span className="section-number">03</span>
@@ -31,18 +41,27 @@ function Skills() {
           <div className="section-line"></div>
         </div>
 
-        <div className="skills__orbit-label">What I Work With</div>
+        <div className="skills__orbit-label">
+          <span className="skills__orbit-ring" aria-hidden="true" />
+          What I Work With
+        </div>
 
         <div className="skills__bento">
           {skillGroups.map((group, gi) => (
-            <div key={group.label} className={`skills__group skills__group--${gi}`}>
-              <span className="skills__group-label">{group.label}</span>
+            <div
+              key={group.label}
+              className={`skills__group skills__group--${gi}${group.wide ? ' skills__group--wide' : ''}`}
+            >
+              <div className="skills__group-top">
+                <span className="skills__group-icon">{groupIcons[group.label]}</span>
+                <span className="skills__group-label">{group.label}</span>
+              </div>
               <div className="skills__tags">
                 {group.skills.map((skill, si) => (
                   <div
                     key={skill}
                     className="skills__tag hoverable"
-                    style={{ animationDelay: `${gi * 0.15 + si * 0.1}s` }}
+                    style={{ animationDelay: `${gi * 0.15 + si * 0.08}s` }}
                   >
                     <span className="skills__tag-dot"></span>
                     <span className="skills__tag-name">{skill}</span>

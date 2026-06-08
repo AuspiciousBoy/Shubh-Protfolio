@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Loader from './components/Loader'
 import Cursor from './components/Cursor'
 import Grain from './components/Grain'
+import GridBackground from './components/GridBackground'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <>
+      <GridBackground />
       <Cursor />
       <Grain />
       {loading ? (

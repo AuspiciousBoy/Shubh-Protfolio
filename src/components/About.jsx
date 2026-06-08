@@ -1,10 +1,16 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { useCountUp } from '../hooks/useCountUp'
+
+const chips = ['React', 'Node.js', 'MongoDB', 'Python', 'Problem Solver']
 
 function About() {
   const [ref, isVisible] = useScrollReveal({ threshold: 0.15 })
+  const techCount = useCountUp(8, isVisible)
 
   return (
     <section id="about" className="about" ref={ref}>
+      <div className="about__glow" aria-hidden="true" />
+
       <div className={`about__inner ${isVisible ? 'reveal' : ''}`}>
         <div className="about__header">
           <span className="section-number">02</span>
@@ -30,19 +36,31 @@ function About() {
               that matter. Every line of code I write is a step toward building something
               extraordinary.
             </p>
+
+            <div className="about__chips">
+              {chips.map((chip, i) => (
+                <span key={chip} className="about__chip" style={{ animationDelay: `${0.5 + i * 0.08}s` }}>
+                  {chip}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="about__stats">
+            <div className="about__avatar hoverable">
+              <img src="/profile.png" alt="Shubh Tiwari" className="about__avatar-img" width={120} height={120} loading="lazy" />
+              <span className="about__avatar-ring" aria-hidden="true" />
+            </div>
             <div className="about__stat">
               <span className="about__stat-number">1<sup>st</sup></span>
               <span className="about__stat-label">Year Student</span>
             </div>
             <div className="about__stat">
-              <span className="about__stat-number">8+</span>
+              <span className="about__stat-number">{techCount}+</span>
               <span className="about__stat-label">Technologies</span>
             </div>
             <div className="about__stat">
-              <span className="about__stat-number">∞</span>
+              <span className="about__stat-number about__stat-number--pulse">∞</span>
               <span className="about__stat-label">Passion</span>
             </div>
           </div>

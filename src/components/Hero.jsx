@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react'
 
+const codeLines = [
+  { text: 'const developer = {', type: 'plain' },
+  { text: '  name: "Shubh Tiwari",', type: 'key' },
+  { text: '  role: "IT Student",', type: 'key' },
+  { text: '  stack: ["React", "Node.js"],', type: 'key' },
+  { text: '  passion: Infinity', type: 'accent' },
+  { text: '}', type: 'plain' },
+]
+
 function Hero() {
   const [loaded, setLoaded] = useState(false)
 
@@ -12,47 +21,93 @@ function Hero() {
     <section id="home" className="hero">
       <div className="hero__bg-text" aria-hidden="true">ST</div>
 
-      <div className={`hero__content ${loaded ? 'hero__content--loaded' : ''}`}>
-        <div className="hero__label">
-          <span className="hero__label-line"></span>
-          <span className="hero__label-text">PORTFOLIO — 2025</span>
+      <div className={`hero__inner ${loaded ? 'hero__inner--loaded' : ''}`}>
+        <div className="hero__content">
+          <div className="hero__label">
+            <span className="hero__label-line"></span>
+            <span className="hero__label-text">PORTFOLIO — 2025</span>
+          </div>
+
+          <div className="hero__badge">
+            <span className="hero__badge-dot" />
+            <span>Open to collaborate & learn</span>
+          </div>
+
+          <h1 className="hero__title">
+            <span className="hero__title-line">
+              {'SHUBH'.split('').map((char, i) => (
+                <span key={i} className="hero__title-char" style={{ animationDelay: `${0.3 + i * 0.08}s` }}>
+                  {char}
+                </span>
+              ))}
+            </span>
+            <span className="hero__title-line hero__title-line--last">
+              {'TIWARI'.split('').map((char, i) => (
+                <span key={i} className="hero__title-char hero__title-char--accent" style={{ animationDelay: `${0.7 + i * 0.08}s` }}>
+                  {char}
+                </span>
+              ))}
+            </span>
+          </h1>
+
+          <div className="hero__info">
+            <p className="hero__subtitle">First Year IT Student</p>
+            <p className="hero__tagline">
+              Passionate about flipping the world<br />
+              with <span className="hero__tagline-highlight">ideas & innovation</span>.
+            </p>
+          </div>
+
+          <div className="hero__cta">
+            <a href="#contact" className="hero__btn hoverable">
+              <span>Get in Touch</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </a>
+            <a href="#about" className="hero__btn hero__btn--ghost hoverable">
+              <span>Explore More</span>
+            </a>
+          </div>
         </div>
 
-        <h1 className="hero__title">
-          <span className="hero__title-line">
-            {'SHUBH'.split('').map((char, i) => (
-              <span key={i} className="hero__title-char" style={{ animationDelay: `${0.3 + i * 0.08}s` }}>
-                {char}
-              </span>
-            ))}
-          </span>
-          <span className="hero__title-line hero__title-line--last">
-            {'TIWARI'.split('').map((char, i) => (
-              <span key={i} className="hero__title-char" style={{ animationDelay: `${0.7 + i * 0.08}s` }}>
-                {char}
-              </span>
-            ))}
-          </span>
-        </h1>
+        <div className="hero__visual">
+          <div className="hero__photo-wrap hoverable">
+            <div className="hero__photo-glow" aria-hidden="true" />
+            <div className="hero__photo-ring" aria-hidden="true" />
+            <div className="hero__photo-frame">
+              <img
+                src="/profile.png"
+                alt="Shubh Tiwari — IT Student and Developer"
+                className="hero__photo"
+                width={320}
+                height={400}
+                loading="eager"
+              />
+            </div>
+            <span className="hero__photo-tag">Developer</span>
+          </div>
 
-        <div className="hero__info">
-          <p className="hero__subtitle">First Year IT Student</p>
-          <p className="hero__tagline">
-            Passionate about flipping the world<br />
-            with ideas & innovation.
-          </p>
-        </div>
-
-        <div className="hero__cta">
-          <a href="#contact" className="hero__btn hoverable">
-            <span>Get in Touch</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M7 17L17 7M17 7H7M17 7V17" />
-            </svg>
-          </a>
-          <a href="#about" className="hero__btn hero__btn--ghost hoverable">
-            <span>Explore More</span>
-          </a>
+          <div className="hero__terminal" aria-hidden="true">
+            <div className="hero__terminal-bar">
+              <span className="hero__terminal-dot hero__terminal-dot--red" />
+              <span className="hero__terminal-dot hero__terminal-dot--yellow" />
+              <span className="hero__terminal-dot hero__terminal-dot--green" />
+              <span className="hero__terminal-title">developer.js</span>
+            </div>
+            <pre className="hero__terminal-code">
+              {codeLines.map((line, i) => (
+                <span
+                  key={i}
+                  className={`hero__code-line hero__code-line--${line.type}`}
+                  style={{ animationDelay: `${1.4 + i * 0.12}s` }}
+                >
+                  {line.text}
+                </span>
+              ))}
+              <span className="hero__code-cursor" />
+            </pre>
+          </div>
         </div>
       </div>
 
@@ -67,6 +122,7 @@ function Hero() {
         <div className="hero__shape hero__shape--1"></div>
         <div className="hero__shape hero__shape--2"></div>
         <div className="hero__shape hero__shape--3"></div>
+        <div className="hero__shape hero__shape--4"></div>
       </div>
     </section>
   )

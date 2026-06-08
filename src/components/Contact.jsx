@@ -42,7 +42,7 @@ function Contact() {
             </a>
           </div>
 
-          <form className="contact__form" onSubmit={handleSubmit}>
+          <form className="contact__form contact__form--glass" onSubmit={handleSubmit}>
             <div className={`contact__field ${focused === 'name' || formData.name ? 'contact__field--active' : ''}`}>
               <label className="contact__label" htmlFor="contact-name">Your Name</label>
               <input
